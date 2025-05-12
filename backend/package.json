@@ -1,0 +1,26 @@
+{
+  "name": "mern-assessment-backend",
+  "version": "1.0.0",
+  "description": "MongoDB + Express.js + React.js + Node.js assessment project",
+  "keywords": [
+    "mongodb",
+    "expressjs",
+    "reactjs",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/boolfalse/mern-assessment#readme",
+  "bugs": {
+    "url": "https://github.com/boolfalse/mern-assessment/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boolfalse/mern-assessment.git"
+  },
+  "license": "ISC",
+  "author": "boolfalse",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
