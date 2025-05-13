@@ -39,15 +39,22 @@ export const reorderTickets = async (start, end) => {
 
 export const editTicket = async (ticket) => {
     if (!ticket.id) return;
-    if (!ticket.title) {
-        toast.error("Title is required!");
+    if (!ticket.customerName || !ticket.email) {
+        toast.error("Customer Name and Email are required!");
+        return;
+    }
+    const statusOptions = ['pending', 'done', 'open'];
+    if (!statusOptions.includes(ticket.status)) {
+        toast.error("Invalid status!");
         return;
     }
 
     try {
         const response = await axiosConfig.put(`/tickets/${ticket.id}`, {
-            title: ticket.title,
-            description: ticket.description,
+            customerName: ticket.customerName,
+            email: ticket.email,
+            notes: ticket.notes,
+            status: ticket.status,
         });
         const { success, message } = response.data;
 
@@ -74,15 +81,22 @@ export const deleteTicket = async (id) => {
 }
 
 export const createTicket = async (ticket) => {
-    if (!ticket.title) {
-        toast.error("Title is required!");
+    if (!ticket.customerName || !ticket.email) {
+        toast.error("Customer Name and Email are required!");
+        return;
+    }
+    const statusOptions = ['pending', 'done', 'open'];
+    if (!statusOptions.includes(ticket.status)) {
+        toast.error("Invalid status!");
         return;
     }
 
     try {
         const response = await axiosConfig.post(`/tickets`, {
-            title: ticket.title,
-            description: ticket.description,
+            customerName: ticket.customerName,
+            email: ticket.email,
+            notes: ticket.notes,
+            status: ticket.status,
         });
         const { success, message } = response.data;
 

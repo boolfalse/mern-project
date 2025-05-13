@@ -6,6 +6,7 @@ body { background-color: whitesmoke; color: rgba(255, 255, 255, 0.7); font-famil
 .modal-header { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; }
 .modal-input-header { font-weight: 600; margin-bottom: 10px; }
 .modal-input { width: 100%; height: 30px; border: 1px solid #ccc; border-radius: 5px; padding: 5px; }
+.modal-status-select { width: 100%; height: 30px; border: 1px solid #ccc; border-radius: 5px; padding: 5px; margin-bottom: 20px; }
 .modal-textarea { width: 100%; height: 100px; border: 1px solid #ccc; border-radius: 5px; padding: 5px; margin-bottom: 20px; resize: vertical; }
 .modal-actions { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 .modal-btn { padding: 10px 20px; border-radius: 5px; cursor: pointer; }
@@ -26,9 +27,9 @@ body { background-color: whitesmoke; color: rgba(255, 255, 255, 0.7); font-famil
 .left-side .ticket-item { padding: 10px; margin: 10px; min-height: 20px; min-width: 200px; color: #2d3748; list-style-type: none; }
 .left-side .ticket-item-content { display: flex; justify-content: space-between; align-items: center; }
 .left-side .ticket-ticket { display: flex; flex-direction: column; justify-content: center; align-items: center; margin-right: 10px; }
-.left-side .ticket-ticket-name { font-size: 1.5rem; font-weight: 600; margin-bottom: 5px; }
+.left-side .ticket-status { font-size: 0.8rem; font-weight: 600; color: #2d3748; }
 .left-side .ticket-time { font-size: 0.8rem; }
-.left-side .ticket-title { font-size: 1.2rem; }
+.left-side .ticket-customer-name { font-size: 1.2rem; }
 .left-side .ticket-actions { display: flex; justify-content: space-between; align-items: center; }
 .left-side .ticket-edit-btn { background-color: #2d3748; color: #fff; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer; margin: 0 5px; }
 .left-side .ticket-edit-btn:hover { background-color: #4a5568; }
@@ -41,6 +42,7 @@ body { background-color: whitesmoke; color: rgba(255, 255, 255, 0.7); font-famil
 .right-side .add-ticket-header { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; }
 .right-side .add-ticket-input-header { font-weight: 600; margin-bottom: 10px; }
 .right-side .add-ticket-input { width: 100%; height: 30px; border: 1px solid #ccc; border-radius: 5px; padding: 5px; }
+.right-side .add-ticket-select { width: 100%; height: 30px; border: 1px solid #ccc; border-radius: 5px; padding: 5px; margin-bottom: 20px; }
 .right-side .add-ticket-textarea { width: 100%; height: 100px; border: 1px solid #ccc; border-radius: 5px; padding: 5px; margin-bottom: 20px; resize: vertical; }
 .right-side .add-ticket-actions { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 .right-side .add-ticket-btn { padding: 10px 20px; border-radius: 5px; cursor: pointer; }

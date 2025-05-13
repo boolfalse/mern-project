@@ -14,16 +14,16 @@ function App () {
     const ticketsData = document.getElementById('app')?.getAttribute('data-tickets');
     // const initialTickets = JSON.parse(ticketsData || '[]');
     const initialTickets = [
-        { id: '1', title: 'Ticket 1', description: 'Description 1' },
-        { id: '2', title: 'Ticket 2', description: 'Description 2' },
-        { id: '3', title: 'Ticket 3', description: 'Description 3' },
+        { id: '1', created: '1 hour ago', customerName: 'Customer 1', email: 'customer1@example.com', notes: 'Notes 1', status: 'open' },
+        { id: '2', created: '12 minutes ago', customerName: 'Customer 2', email: 'customer2@example.com', notes: 'Notes 2', status: 'done' },
+        { id: '3', created: '20 seconds ago', customerName: 'Customer 3', email: 'customer3@example.com', notes: 'Notes 3', status: 'pending' },
     ];
     const [tickets, setTickets] = useState(initialTickets || []);
     const [isModalEditOpen, setIsModalEditOpen] = useState(false);
-    const [modalEditTicket, setModalEditTicket] = useState({id: '', title: '', description: ''});
+    const [modalEditTicket, setModalEditTicket] = useState({id: '', customerName: '', notes: ''});
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
     const [modalDeleteTicketId, setModalDeleteTicketId] = useState('');
-    const [newTicket, setNewTicket] = useState({title: '', description: ''});
+    const [newTicket, setNewTicket] = useState({customerName: '', notes: ''});
 
     const reloadTickets = () => {
         getTickets().then((ticketsData) => setTickets(ticketsData));

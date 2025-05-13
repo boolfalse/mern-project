@@ -23,14 +23,26 @@ function ModalEdit({
             <div className="modal-content">
                 <h2 className="modal-header">Edit Ticket</h2>
 
-                <h3 className="modal-input-header">Title</h3>
-                <input type="text" value={modalEditTicket.title}
+                <h3 className="modal-input-header">Customer Name</h3>
+                <input type="text" value={modalEditTicket.customerName}
                        className="modal-input"
-                       onChange={(e) => setModalEditTicket({...modalEditTicket, title: e.target.value})}/>
-                <h3 className="modal-input-header">Description</h3>
+                       onChange={(e) => setModalEditTicket({...modalEditTicket, customerName: e.target.value})}/>
+                <h3 className="modal-input-header">Email</h3>
+                <input type="text" value={modalEditTicket.email}
+                       className="modal-input"
+                       onChange={(e) => setModalEditTicket({...modalEditTicket, email: e.target.value})}/>
+                <h3 className="modal-input-header">Status</h3>
+                <select className="modal-status-select"
+                        onChange={(e) => setModalEditTicket({...modalEditTicket, status: e.target.value})}
+                        value={modalEditTicket.status || 'pending'}>
+                    <option value="pending">Pending</option>
+                    <option value="open">Open</option>
+                    <option value="done">Done</option>
+                </select>
+                <h3 className="modal-input-header">Notes</h3>
                 <textarea className="modal-textarea"
-                          onChange={(e) => setModalEditTicket({...modalEditTicket, description: e.target.value})}
-                          value={modalEditTicket.description || ''} />
+                          onChange={(e) => setModalEditTicket({...modalEditTicket, notes: e.target.value})}
+                          value={modalEditTicket.notes || ''} />
 
                 <div className="modal-actions">
                     <button className="modal-btn modal-btn-cancel"
