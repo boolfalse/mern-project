@@ -1,36 +1,36 @@
 
 import {Modal} from "react-responsive-modal";
 import React from "react";
-import {editTask} from "../utils";
+import {editTicket} from "../utils";
 
 
 function ModalEdit({
                        isModalEditOpen,
                        setIsModalEditOpen,
-                       modalEditTask,
-                       setModalEditTask,
-                       reloadTasks
+                       modalEditTicket,
+                       setModalEditTicket,
+                       reloadTickets
 }) {
-    const submitTaskEdit = () => {
+    const submitTicketEdit = () => {
         setIsModalEditOpen(false);
-        editTask(modalEditTask).then(() => {
-            reloadTasks();
+        editTicket(modalEditTicket).then(() => {
+            reloadTickets();
         });
     };
 
     return (
         <Modal open={isModalEditOpen} onClose={() => setIsModalEditOpen(false)} center>
             <div className="modal-content">
-                <h2 className="modal-header">Edit Task</h2>
+                <h2 className="modal-header">Edit Ticket</h2>
 
                 <h3 className="modal-input-header">Title</h3>
-                <input type="text" value={modalEditTask.title}
+                <input type="text" value={modalEditTicket.title}
                        className="modal-input"
-                       onChange={(e) => setModalEditTask({...modalEditTask, title: e.target.value})}/>
+                       onChange={(e) => setModalEditTicket({...modalEditTicket, title: e.target.value})}/>
                 <h3 className="modal-input-header">Description</h3>
                 <textarea className="modal-textarea"
-                          onChange={(e) => setModalEditTask({...modalEditTask, description: e.target.value})}
-                          value={modalEditTask.description || ''} />
+                          onChange={(e) => setModalEditTicket({...modalEditTicket, description: e.target.value})}
+                          value={modalEditTicket.description || ''} />
 
                 <div className="modal-actions">
                     <button className="modal-btn modal-btn-cancel"
@@ -38,7 +38,7 @@ function ModalEdit({
                     >Close
                     </button>
                     <button className="modal-btn modal-btn-submit"
-                            onClick={submitTaskEdit}
+                            onClick={submitTicketEdit}
                     >Save</button>
                 </div>
             </div>

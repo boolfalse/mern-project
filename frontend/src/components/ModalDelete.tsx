@@ -1,34 +1,34 @@
 
 import {Modal} from "react-responsive-modal";
-import {deleteTask} from "../utils";
+import {deleteTicket} from "../utils";
 
 
 function ModalDelete({
                          isModalDeleteOpen,
                          setIsModalDeleteOpen,
-                         modalDeleteTaskId,
-                         reloadTasks
+                         modalDeleteTicketId,
+                         reloadTickets
 }) {
-    const submitTaskDelete = () => {
+    const submitTicketDelete = () => {
         setIsModalDeleteOpen(false);
-        deleteTask(modalDeleteTaskId).then(() => {
-            reloadTasks();
+        deleteTicket(modalDeleteTicketId).then(() => {
+            reloadTickets();
         });
     };
 
     return (
         <Modal open={isModalDeleteOpen} onClose={() => setIsModalDeleteOpen(false)} center>
             <div className="modal-content">
-                <h2 className="modal-header">Delete Task</h2>
+                <h2 className="modal-header">Delete Ticket</h2>
 
-                <p className="modal-question">Are you sure you want to delete this task?</p>
+                <p className="modal-question">Are you sure you want to delete this ticket?</p>
 
                 <div className="modal-actions">
                     <button className="modal-btn modal-btn-cancel"
                             onClick={() => setIsModalDeleteOpen(false)}
                     >Cancel</button>
                     <button className="modal-btn modal-btn-submit"
-                            onClick={submitTaskDelete}
+                            onClick={submitTicketDelete}
                     >Yes</button>
                 </div>
             </div>

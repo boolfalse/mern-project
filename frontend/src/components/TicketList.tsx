@@ -1,7 +1,7 @@
 
-import {DragDropContext, Draggable, Droppable} from "@hello-pangea/dnd";
-import Task from "./Task";
-import {reorderTasks} from "../utils";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import Ticket from "./Ticket";
+import { reorderTickets } from "../utils";
 
 
 const getItemStyle = (isDragging, draggableStyle) => ({
@@ -9,25 +9,25 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     ...draggableStyle,
 });
 
-function TaskList({
-                      tasks,
+function TicketList({
+                      tickets,
                       setIsModalEditOpen,
-                      setModalEditTask,
+                      setModalEditTicket,
                       setIsModalDeleteOpen,
-                      setModalDeleteTaskId,
-                      setTasks
+                      setModalDeleteTicketId,
+                      setTickets
 }) {
     const handleDragEnd = (result) => {
         if (!result.destination || result.destination.index === result.source.index) {
             return;
         }
 
-        const items = Array.from(tasks);
+        const items = Array.from(tickets);
         const [reorderedItem] = items.splice(result.source.index, 1);
         items.splice(result.destination.index, 0, reorderedItem);
-        reorderTasks(result.source.index + 1, result.destination.index + 1);
+        reorderTickets(result.source.index + 1, result.destination.index + 1);
 
-        setTasks(items);
+        setTickets(items);
     };
 
     return (
@@ -35,20 +35,20 @@ function TaskList({
             <Droppable droppableId="droppable">
                 {(provided) => (
                     <ul {...provided.droppableProps} ref={provided.innerRef}>
-                        {tasks.map((task, index) => (
-                            <Draggable key={task.id.toString()} draggableId={task.id.toString()} index={index}>
+                        {tickets.map((ticket, index) => (
+                            <Draggable key={ticket.id.toString()} draggableId={ticket.id.toString()} index={index}>
                                 {(provided, snapshot) => (
                                     <li ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
-                                        className="task-item"
+                                        className="ticket-item"
                                         style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                                     >
-                                        <Task task={task}
+                                        <Ticket ticket={ticket}
                                               setIsModalEditOpen={setIsModalEditOpen}
-                                              setModalEditTask={setModalEditTask}
+                                              setModalEditTicket={setModalEditTicket}
                                               setIsModalDeleteOpen={setIsModalDeleteOpen}
-                                              setModalDeleteTaskId={setModalDeleteTaskId}
+                                              setModalDeleteTicketId={setModalDeleteTicketId}
                                         />
                                     </li>
                                 )}
@@ -62,4 +62,4 @@ function TaskList({
     );
 }
 
-export default TaskList;
+export default TicketList;

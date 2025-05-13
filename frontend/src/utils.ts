@@ -9,13 +9,13 @@ export const getErrorMessage = (error: unknown) => {
     return String(error)
 }
 
-export const getTasks = async () => {
+export const getTickets = async () => {
     try {
-        const response = await axiosConfig.get(`/tasks`);
-        const { success, tasks, message } = response.data;
+        const response = await axiosConfig.get(`/tickets`);
+        const { success, tickets, message } = response.data;
 
         if (success) {
-            return tasks;
+            return tickets;
         } else {
             toast.error(message);
             return [];
@@ -26,9 +26,9 @@ export const getTasks = async () => {
     }
 }
 
-export const reorderTasks = async (start, end) => {
+export const reorderTickets = async (start, end) => {
     try {
-        const response = await axiosConfig.put('/tasks', {start, end});
+        const response = await axiosConfig.put('/tickets', {start, end});
         const { success, message } = response.data;
 
         toast[success ? 'success' : 'error'](message);
@@ -37,17 +37,17 @@ export const reorderTasks = async (start, end) => {
     }
 }
 
-export const editTask = async (task) => {
-    if (!task.id) return;
-    if (!task.title) {
+export const editTicket = async (ticket) => {
+    if (!ticket.id) return;
+    if (!ticket.title) {
         toast.error("Title is required!");
         return;
     }
 
     try {
-        const response = await axiosConfig.put(`/tasks/${task.id}`, {
-            title: task.title,
-            description: task.description,
+        const response = await axiosConfig.put(`/tickets/${ticket.id}`, {
+            title: ticket.title,
+            description: ticket.description,
         });
         const { success, message } = response.data;
 
@@ -57,14 +57,14 @@ export const editTask = async (task) => {
     }
 }
 
-export const deleteTask = async (id) => {
+export const deleteTicket = async (id) => {
     if (!id) {
-        toast.error("Invalid task!");
+        toast.error("Invalid ticket!");
         return;
     }
 
     try {
-        const response = await axiosConfig.delete(`/tasks/${id}`);
+        const response = await axiosConfig.delete(`/tickets/${id}`);
         const { success, message } = response.data;
 
         toast[success ? 'success' : 'error'](message);
@@ -73,16 +73,16 @@ export const deleteTask = async (id) => {
     }
 }
 
-export const createTask = async (task) => {
-    if (!task.title) {
+export const createTicket = async (ticket) => {
+    if (!ticket.title) {
         toast.error("Title is required!");
         return;
     }
 
     try {
-        const response = await axiosConfig.post(`/tasks`, {
-            title: task.title,
-            description: task.description,
+        const response = await axiosConfig.post(`/tickets`, {
+            title: ticket.title,
+            description: ticket.description,
         });
         const { success, message } = response.data;
 
