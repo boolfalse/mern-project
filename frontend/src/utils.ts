@@ -27,6 +27,28 @@ export const getTickets = async () => {
     }
 }
 
+export const getOneTicket = async (_id) => {
+    if (!_id) {
+        toast.error("Invalid ticket ID!");
+        return null;
+    }
+
+    try {
+        const response = await axiosConfig.get(`/tickets/${_id}`);
+        const { success, ticket, message } = response.data;
+
+        if (success) {
+            return ticket;
+        } else {
+            toast.error(message);
+            return null;
+        }
+    } catch (err) {
+        toast.error(getErrorMessage(err));
+        return null;
+    }
+}
+
 export const editTicket = async (ticket) => {
     if (!ticket._id) return;
     if (!ticket.customerName || !ticket.email) {

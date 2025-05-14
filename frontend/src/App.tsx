@@ -1,6 +1,6 @@
 
 import {useEffect, useState} from 'react';
-import { getTickets } from "./utils";
+import { getTickets, getOneTicket } from "./utils";
 import "react-responsive-modal/styles.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,6 +20,15 @@ function App () {
 
     const reloadTickets = () => {
         getTickets().then((ticketsData) => setTickets(ticketsData));
+    };
+
+    const getOneTicketHandler = (_id) => {
+        getOneTicket(_id).then((ticket) => {
+            if (ticket) {
+                setModalEditTicket(ticket);
+                setIsModalEditOpen(true);
+            }
+        });
     };
 
     useEffect(() => {
@@ -44,13 +53,13 @@ function App () {
                 {tickets.length > 0 ? (
                     <TicketList tickets={tickets}
                               setIsModalEditOpen={setIsModalEditOpen}
-                              setModalEditTicket={setModalEditTicket}
+                              getOneTicketHandler={getOneTicketHandler}
                               setIsModalDeleteOpen={setIsModalDeleteOpen}
                               setModalDeleteTicketId={setModalDeleteTicketId}
                     />
                 ) : (
                     <div className="no-tickets">
-                        No tickets yet :(
+                        No tickets...
                     </div>
                 )}
             </div>

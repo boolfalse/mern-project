@@ -5,7 +5,7 @@ import Ticket from "./Ticket";
 function TicketList({
                         tickets,
                         setIsModalEditOpen,
-                        setModalEditTicket,
+                        getOneTicketHandler,
                         setIsModalDeleteOpen,
                         setModalDeleteTicketId,
                     }) {
@@ -15,7 +15,7 @@ function TicketList({
                 <li key={ticket._id.toString()} className="ticket-item">
                     <Ticket ticket={ticket}
                             setIsModalEditOpen={setIsModalEditOpen}
-                            setModalEditTicket={setModalEditTicket}
+                            getOneTicketHandler={getOneTicketHandler}
                             setIsModalDeleteOpen={setIsModalDeleteOpen}
                             setModalDeleteTicketId={setModalDeleteTicketId}
                     />

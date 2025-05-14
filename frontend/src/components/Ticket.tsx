@@ -1,13 +1,13 @@
 
 function Ticket({
-                  ticket,
-                  setIsModalEditOpen,
-                  setModalEditTicket,
-                  setIsModalDeleteOpen,
-                  setModalDeleteTicketId
+                    ticket,
+                    setIsModalEditOpen,
+                    getOneTicketHandler,
+                    setIsModalDeleteOpen,
+                    setModalDeleteTicketId
 }) {
     const handleEdit = () => {
-        setModalEditTicket(ticket);
+        getOneTicketHandler(ticket._id);
         setIsModalEditOpen(true);
     };
 
