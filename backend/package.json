@@ -20,14 +20,21 @@
   "author": "boolfalse",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node api/server.js",
+    "dev": "nodemon api/server.js",
+    "seed": "nodemon scripts/seed.js"
   },
   "dependencies": {
+    "connect-mongo": "^5.1.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.14.3"
   },
   "devDependencies": {
+    "colors": "^1.4.0",
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.10"
   }
 }
