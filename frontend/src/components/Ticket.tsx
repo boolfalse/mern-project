@@ -12,7 +12,7 @@ function Ticket({
     };
 
     const handleDelete = () => {
-        setModalDeleteTicketId(ticket.id);
+        setModalDeleteTicketId(ticket._id);
         setIsModalDeleteOpen(true);
     };
 
@@ -20,7 +20,7 @@ function Ticket({
         <div className="ticket-item-content">
             <span className="ticket-ticket">
                 <div className="ticket-status">{ticket.status.toUpperCase()}</div>
-                <span className="ticket-time">Created {ticket.created}</span>
+                <span className="ticket-time">{new Date(ticket.createdAt).toLocaleString()}</span>
             </span>
             <span className="ticket-customer-name">{ticket.customerName}</span>
             <div className="ticket-actions">

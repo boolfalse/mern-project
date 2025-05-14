@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { getTickets } from "./utils";
 import "react-responsive-modal/styles.css";
 import { ToastContainer } from 'react-toastify';
@@ -11,23 +11,20 @@ import AddTicketForm from "./components/AddTicketForm";
 
 
 function App () {
-    const ticketsData = document.getElementById('app')?.getAttribute('data-tickets');
-    // const initialTickets = JSON.parse(ticketsData || '[]');
-    const initialTickets = [
-        { id: '1', created: '1 hour ago', customerName: 'Customer 1', email: 'customer1@example.com', notes: 'Notes 1', status: 'open' },
-        { id: '2', created: '12 minutes ago', customerName: 'Customer 2', email: 'customer2@example.com', notes: 'Notes 2', status: 'done' },
-        { id: '3', created: '20 seconds ago', customerName: 'Customer 3', email: 'customer3@example.com', notes: 'Notes 3', status: 'pending' },
-    ];
-    const [tickets, setTickets] = useState(initialTickets || []);
+    const [tickets, setTickets] = useState([]); // initialTickets || []
     const [isModalEditOpen, setIsModalEditOpen] = useState(false);
-    const [modalEditTicket, setModalEditTicket] = useState({id: '', customerName: '', notes: ''});
+    const [modalEditTicket, setModalEditTicket] = useState({_id: '', customerName: '', email: '', notes: '', status: 'pending'});
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
     const [modalDeleteTicketId, setModalDeleteTicketId] = useState('');
-    const [newTicket, setNewTicket] = useState({customerName: '', notes: ''});
+    const [newTicket, setNewTicket] = useState({customerName: '', email: '', notes: '', status: 'pending'});
 
     const reloadTickets = () => {
         getTickets().then((ticketsData) => setTickets(ticketsData));
     };
+
+    useEffect(() => {
+        reloadTickets();
+    }, []);
 
     return (
         <div>

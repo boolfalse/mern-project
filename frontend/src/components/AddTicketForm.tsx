@@ -3,16 +3,17 @@ import {createTicket} from "../utils";
 
 
 function AddTicketForm({
-                        newTicket,
-                        setNewTicket,
-                        reloadTickets
+                           newTicket,
+                           setNewTicket,
+                           reloadTickets
 }) {
     const clearTicketCreate = () => {
-        setNewTicket({customerName: '', email: '', notes: ''});
+        setNewTicket({customerName: '', email: '', notes: '', status: 'pending'});
     };
     const submitTicketCreate = () => {
-        createTicket(newTicket).then(() => {
-            setNewTicket({customerName: '', email: '', notes: ''});
+        createTicket(newTicket).then((isCreated) => {
+            if (!isCreated) return;
+            setNewTicket({customerName: '', email: '', notes: '', status: 'pending'});
             reloadTickets();
         });
     };

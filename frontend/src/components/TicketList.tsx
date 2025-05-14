@@ -36,7 +36,7 @@ function TicketList({
                 {(provided) => (
                     <ul {...provided.droppableProps} ref={provided.innerRef}>
                         {tickets.map((ticket, index) => (
-                            <Draggable key={ticket.id.toString()} draggableId={ticket.id.toString()} index={index}>
+                            <Draggable key={ticket._id.toString()} draggableId={ticket._id.toString()} index={index}>
                                 {(provided, snapshot) => (
                                     <li ref={provided.innerRef}
                                         {...provided.draggableProps}
