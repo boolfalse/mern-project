@@ -109,48 +109,4 @@ module.exports = {
             });
         }
     }),
-    reorder: asyncHandler(async (req, res) => {
-        const { start, end } = req.body;
-
-        try {
-            const tickets = await Ticket.find().sort({ priority: 1 });
-            if (start > tickets.length || end > tickets.length) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'Invalid start or end index!',
-                });
-            }
-
-            const ids = tickets.map(ticket => ticket._id);
-            const priorities = tickets.map(ticket => ticket.priority);
-
-            const out_priority = priorities.splice(start - 1, 1);
-            priorities.splice(end - 1, 0, ...out_priority);
-
-            let when_then = '';
-            let where_in = '';
-            for (let i = 0; i < priorities.length; i++) {
-                const id = ids[priorities[i] - 1];
-                when_then += `WHEN ${id} THEN ${i + 1} `;
-                where_in += `${id},`;
-            }
-
-            // const bulk_update_query = `UPDATE Ticket SET priority = (CASE id ${when_then} END) WHERE id IN(${where_in.slice(0, -1)}) AND deleted_at IS NULL;`;
-
-            await Ticket.updateMany(
-                { _id: { $in: ids } },
-                { $set: { priority: priorities } }
-            );
-
-            return res.status(200).json({
-                success: true,
-                message: 'Tickets reordered successfully.'
-            });
-        } catch (err) {
-            return res.status(500).json({
-                success: false,
-                message: err.message || err.toString(),
-            });
-        }
-    }),
 }

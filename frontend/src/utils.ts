@@ -27,17 +27,6 @@ export const getTickets = async () => {
     }
 }
 
-export const reorderTickets = async (start, end) => {
-    try {
-        const response = await axiosConfig.post('/tickets/reorder', {start, end});
-        const { success, message } = response.data;
-
-        toast[success ? 'success' : 'error'](message);
-    } catch (err) {
-        toast.error(getErrorMessage(err));
-    }
-}
-
 export const editTicket = async (ticket) => {
     if (!ticket._id) return;
     if (!ticket.customerName || !ticket.email) {

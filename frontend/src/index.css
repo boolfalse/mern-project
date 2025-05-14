@@ -24,7 +24,7 @@ body { background-color: whitesmoke; color: rgba(255, 255, 255, 0.7); font-famil
 
 /* LEFT SIDE start */
 .left-side .no-tickets { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; text-align: center; color: #2d3748; }
-.left-side .ticket-item { padding: 10px; margin: 10px; min-height: 20px; min-width: 200px; color: #2d3748; list-style-type: none; }
+.left-side .ticket-item { padding: 10px; margin: 10px; min-height: 20px; min-width: 200px; color: #2d3748; list-style-type: none; background: grey; }
 .left-side .ticket-item-content { display: flex; justify-content: space-between; align-items: center; }
 .left-side .ticket-ticket { display: flex; flex-direction: column; justify-content: center; align-items: center; margin-right: 10px; }
 .left-side .ticket-status { font-size: 0.8rem; font-weight: 600; color: #2d3748; }

@@ -47,7 +47,6 @@ function App () {
                               setModalEditTicket={setModalEditTicket}
                               setIsModalDeleteOpen={setIsModalDeleteOpen}
                               setModalDeleteTicketId={setModalDeleteTicketId}
-                              setTickets={setTickets}
                     />
                 ) : (
                     <div className="no-tickets">
