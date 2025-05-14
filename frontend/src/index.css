@@ -25,6 +25,9 @@ body { background-color: whitesmoke; color: rgba(255, 255, 255, 0.7); font-famil
 /* LEFT SIDE start */
 .left-side .no-tickets { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; text-align: center; color: #2d3748; }
 .left-side .ticket-item { padding: 10px; margin: 10px; min-height: 20px; min-width: 200px; color: #2d3748; list-style-type: none; background: grey; }
+.left-side .search-wrapper {display: flex; justify-content: center; align-items: center; margin: 20px 0; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);}
+.left-side .search-wrapper .search-input {width: 100%; height: 30px; border: 1px solid #ccc; border-radius: 5px; padding: 5px;}
+.left-side .search-wrapper .clear-search {background-color: #e53e3e; color: #fff; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer; margin-left: 10px;}
 .left-side .ticket-item-content { display: flex; justify-content: space-between; align-items: center; }
 .left-side .ticket-ticket { display: flex; flex-direction: column; justify-content: center; align-items: center; margin-right: 10px; }
 .left-side .ticket-status { font-size: 0.8rem; font-weight: 600; color: #2d3748; }

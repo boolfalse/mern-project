@@ -8,18 +8,26 @@ import ModalEdit from "./components/ModalEdit";
 import ModalDelete from "./components/ModalDelete";
 import TicketList from "./components/TicketList";
 import AddTicketForm from "./components/AddTicketForm";
+import SearchInput from "./components/SearchInput";
 
 
 function App () {
-    const [tickets, setTickets] = useState([]); // initialTickets || []
+    const [tickets, setTickets] = useState([]);
+    const [initialTickets, setInitialTickets] = useState([]);
     const [isModalEditOpen, setIsModalEditOpen] = useState(false);
     const [modalEditTicket, setModalEditTicket] = useState({_id: '', customerName: '', email: '', notes: '', status: 'pending'});
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
     const [modalDeleteTicketId, setModalDeleteTicketId] = useState('');
     const [newTicket, setNewTicket] = useState({customerName: '', email: '', notes: '', status: 'pending'});
+    const [searchTerm, setSearchTerm] = useState('');
 
     const reloadTickets = () => {
-        getTickets().then((ticketsData) => setTickets(ticketsData));
+        setSearchTerm('');
+
+        getTickets().then((ticketsData) => {
+            setTickets(ticketsData);
+            setInitialTickets(ticketsData);
+        });
     };
 
     const getOneTicketHandler = (_id) => {
@@ -30,6 +38,20 @@ function App () {
             }
         });
     };
+
+    const changeSearchTerm = (term) => {
+        setSearchTerm(term);
+
+        if (term === '') {
+            setTickets(initialTickets);
+        } else {
+            const ticketsData = tickets.filter(ticket => {
+                return ticket.customerName.toLowerCase().includes(term.toLowerCase()) ||
+                    (ticket.email ? ticket.email.toLowerCase().includes(term.toLowerCase()) : false);
+            });
+            setTickets(ticketsData);
+        }
+    }
 
     useEffect(() => {
         reloadTickets();
@@ -50,13 +72,16 @@ function App () {
                          reloadTickets={reloadTickets}
             />
             <div className="left-side">
-                {tickets.length > 0 ? (
-                    <TicketList tickets={tickets}
-                              setIsModalEditOpen={setIsModalEditOpen}
-                              getOneTicketHandler={getOneTicketHandler}
-                              setIsModalDeleteOpen={setIsModalDeleteOpen}
-                              setModalDeleteTicketId={setModalDeleteTicketId}
-                    />
+                {tickets.length > 0 || searchTerm !== '' ? (
+                    <>
+                        <SearchInput searchTerm={searchTerm} changeSearchTerm={changeSearchTerm} />
+                        <TicketList tickets={tickets}
+                                    setIsModalEditOpen={setIsModalEditOpen}
+                                    getOneTicketHandler={getOneTicketHandler}
+                                    setIsModalDeleteOpen={setIsModalDeleteOpen}
+                                    setModalDeleteTicketId={setModalDeleteTicketId}
+                        />
+                    </>
                 ) : (
                     <div className="no-tickets">
                         No tickets...
