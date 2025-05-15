@@ -7,9 +7,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from this origin
-    // methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Allow all HTTP methods
-    allowedHeaders: ['Content-Type'] // Allow specific headers
+    origin: [ // Allow requests from this origin
+        process.env.FRONTEND_BASE_URL,
+    ],
+    allowedHeaders: [ // Allow specific headers
+        'Content-Type',
+    ],
 }));
 
 
