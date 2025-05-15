@@ -22,19 +22,31 @@ git clone git@github.com:boolfalse/mern-assessment.git && cd mern-assessment
 npm install --prefix backend && npm install --prefix frontend
 ```
 
-- Build the frontend:
+- Setup Frontend environment variables as in `.env.example`.
+  You can leave the default values as they are.
 ```bash
-npm run build --prefix frontend
+cp frontend/.env.example frontend/.env
 ```
 
-- Start the backend server:
+- Setup Backend environment variables as in `backend/.env.example`.
+  Make sure to have `FRONTEND_BASE_URL` the same as in the frontend `.env` file.
+```bash
+cp backend/.env.example backend/.env
+```
+
+- Start the backend:
 ```bash
 npm start --prefix backend
 ```
 
-- Open a browser and navigate to:
+- Start the frontend:
 ```bash
-http://localhost:3001
+npm run dev --prefix frontend
+```
+
+- Open the application in your browser (default port is in example):
+```bash
+http://localhost:5173
 ```
 
 

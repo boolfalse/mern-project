@@ -8,6 +8,7 @@ app.use(express.json());
 
 app.use(cors({
     origin: [ // Allow requests from this origin
+        'http://localhost:5173',
         process.env.FRONTEND_BASE_URL,
     ],
     allowedHeaders: [ // Allow specific headers

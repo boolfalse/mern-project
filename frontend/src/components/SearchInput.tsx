@@ -6,7 +6,7 @@ function SearchInput({
     return (
         <div className="search-wrapper">
             <input type="text"
-                   placeholder="Search..."
+                   placeholder="Search by Customers' Name or email..."
                    value={searchTerm}
                    className="search-input"
                    onChange={(e) => changeSearchTerm(e.target.value)}
