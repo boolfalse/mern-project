@@ -1,6 +1,7 @@
 
-import {Modal} from "react-responsive-modal";
-import {deleteTicket} from "../utils";
+import {JSX} from 'react';
+import {Modal} from 'react-responsive-modal';
+import {deleteTicket} from '../utils';
 
 
 function ModalDelete({
@@ -8,8 +9,13 @@ function ModalDelete({
                          setIsModalDeleteOpen,
                          modalDeleteTicketId,
                          reloadTickets
-}) {
-    const submitTicketDelete = () => {
+}: {
+    isModalDeleteOpen: boolean;
+    setIsModalDeleteOpen: (isOpen: boolean) => void;
+    modalDeleteTicketId: string;
+    reloadTickets: () => void;
+}): JSX.Element {
+    const submitTicketDelete = (): void => {
         setIsModalDeleteOpen(false);
         deleteTicket(modalDeleteTicketId).then(() => {
             reloadTickets();

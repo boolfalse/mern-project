@@ -1,17 +1,27 @@
 
+import {JSX} from 'react';
+import TicketInterface from '../interfaces/TicketInterface';
+
+
 function Ticket({
                     ticket,
                     setIsModalEditOpen,
                     getOneTicketHandler,
                     setIsModalDeleteOpen,
                     setModalDeleteTicketId
-}) {
-    const handleEdit = () => {
+}: {
+    ticket: TicketInterface;
+    setIsModalEditOpen: (isOpen: boolean) => void;
+    getOneTicketHandler: (_id: string) => void;
+    setIsModalDeleteOpen: (isOpen: boolean) => void;
+    setModalDeleteTicketId: (_id: string) => void;
+}): JSX.Element {
+    const handleEdit = (): void => {
         getOneTicketHandler(ticket._id);
         setIsModalEditOpen(true);
     };
 
-    const handleDelete = () => {
+    const handleDelete = (): void => {
         setModalDeleteTicketId(ticket._id);
         setIsModalDeleteOpen(true);
     };

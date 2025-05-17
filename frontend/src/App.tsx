@@ -1,37 +1,40 @@
 
-import {useEffect, useState} from 'react';
-import { getTickets, getOneTicket } from "./utils";
-import "react-responsive-modal/styles.css";
+import {JSX, useEffect, useState} from 'react';
+import { getTickets, getOneTicket } from './utils';
+import 'react-responsive-modal/styles.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ModalEdit from "./components/ModalEdit";
-import ModalDelete from "./components/ModalDelete";
-import TicketList from "./components/TicketList";
-import AddTicketForm from "./components/AddTicketForm";
-import SearchInput from "./components/SearchInput";
+import ModalEdit from './components/ModalEdit';
+import ModalDelete from './components/ModalDelete';
+import TicketList from './components/TicketList';
+import AddTicketForm from './components/AddTicketForm';
+import SearchInput from './components/SearchInput';
+import TicketInterface from './interfaces/TicketInterface';
+import NewTicketInterface from './interfaces/NewTicketInterface';
+import EmptyTicket from './interfaces/EmptyTicket';
 
 
-function App () {
-    const [tickets, setTickets] = useState([]);
-    const [initialTickets, setInitialTickets] = useState([]);
-    const [isModalEditOpen, setIsModalEditOpen] = useState(false);
-    const [modalEditTicket, setModalEditTicket] = useState({_id: '', customerName: '', email: '', notes: '', status: 'pending'});
-    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
-    const [modalDeleteTicketId, setModalDeleteTicketId] = useState('');
-    const [newTicket, setNewTicket] = useState({customerName: '', email: '', notes: '', status: 'pending'});
-    const [searchTerm, setSearchTerm] = useState('');
+function App(): JSX.Element {
+    const [tickets, setTickets] = useState<TicketInterface[]>([]);
+    const [initialTickets, setInitialTickets] = useState<TicketInterface[]>([]);
+    const [isModalEditOpen, setIsModalEditOpen] = useState<boolean>(false);
+    const [modalEditTicket, setModalEditTicket] = useState<TicketInterface>({_id: '', createdAt: '', ...EmptyTicket});
+    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState<boolean>(false);
+    const [modalDeleteTicketId, setModalDeleteTicketId] = useState<string>('');
+    const [newTicket, setNewTicket] = useState<NewTicketInterface>(EmptyTicket);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
-    const reloadTickets = () => {
+    const reloadTickets = (): void => {
         setSearchTerm('');
 
-        getTickets().then((ticketsData) => {
+        getTickets().then((ticketsData: TicketInterface[]) => {
             setTickets(ticketsData);
             setInitialTickets(ticketsData);
         });
     };
 
-    const getOneTicketHandler = (_id) => {
-        getOneTicket(_id).then((ticket) => {
+    const getOneTicketHandler = (_id: string): void => {
+        getOneTicket(_id).then((ticket: TicketInterface | null) => {
             if (ticket) {
                 setModalEditTicket(ticket);
                 setIsModalEditOpen(true);
@@ -39,13 +42,13 @@ function App () {
         });
     };
 
-    const changeSearchTerm = (term) => {
+    const changeSearchTerm = (term: string): void => {
         setSearchTerm(term);
 
         if (term === '') {
             setTickets(initialTickets);
         } else {
-            const ticketsData = tickets.filter(ticket => {
+            const ticketsData = tickets.filter((ticket: TicketInterface) => {
                 return ticket.customerName.toLowerCase().includes(term.toLowerCase()) ||
                     (ticket.email ? ticket.email.toLowerCase().includes(term.toLowerCase()) : false);
             });

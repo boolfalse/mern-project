@@ -1,19 +1,26 @@
 
-import {createTicket} from "../utils";
+import React, {JSX} from 'react';
+import {createTicket} from '../utils';
+import NewTicketInterface from '../interfaces/NewTicketInterface';
+import EmptyTicket from '../interfaces/EmptyTicket';
 
 
 function AddTicketForm({
                            newTicket,
                            setNewTicket,
                            reloadTickets
-}) {
-    const clearTicketCreate = () => {
-        setNewTicket({customerName: '', email: '', notes: '', status: 'pending'});
+}: {
+    newTicket: NewTicketInterface;
+    setNewTicket: React.Dispatch<React.SetStateAction<NewTicketInterface>>;
+    reloadTickets: () => void;
+}): JSX.Element {
+    const clearTicketCreate = (): void => {
+        setNewTicket(EmptyTicket);
     };
-    const submitTicketCreate = () => {
+    const submitTicketCreate = (): void => {
         createTicket(newTicket).then((isCreated) => {
             if (!isCreated) return;
-            setNewTicket({customerName: '', email: '', notes: '', status: 'pending'});
+            setNewTicket(EmptyTicket);
             reloadTickets();
         });
     };

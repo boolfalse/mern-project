@@ -1,16 +1,22 @@
 
 import axiosConfig from './axiosConfig';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import TicketInterface from './interfaces/TicketInterface';
+import NewTicketInterface from './interfaces/NewTicketInterface';
 
 
-export const getErrorMessage = (error: unknown) => {
+export const getErrorMessage = (error: unknown): string => {
+    if (axios.isAxiosError(error)) {
+        return error.response?.data.message || error.message;
+    }
     if (error instanceof Error) {
-        return error?.response?.data.message || error.message;
+        return error.message;
     }
     return String(error)
 }
 
-export const getTickets = async () => {
+export const getTickets = async (): Promise<TicketInterface[]> => {
     try {
         const response = await axiosConfig.get(`/tickets`);
         const { success, tickets, message } = response.data;
@@ -27,7 +33,7 @@ export const getTickets = async () => {
     }
 }
 
-export const getOneTicket = async (_id) => {
+export const getOneTicket = async (_id: string): Promise<TicketInterface | null> => {
     if (!_id) {
         toast.error("Invalid ticket ID!");
         return null;
@@ -49,7 +55,7 @@ export const getOneTicket = async (_id) => {
     }
 }
 
-export const editTicket = async (ticket) => {
+export const editTicket = async (ticket: TicketInterface): Promise<void> => {
     if (!ticket._id) return;
     if (!ticket.customerName || !ticket.email) {
         toast.error("Customer Name and Email are required!");
@@ -81,7 +87,7 @@ export const editTicket = async (ticket) => {
     }
 }
 
-export const deleteTicket = async (_id) => {
+export const deleteTicket = async (_id: string): Promise<void> => {
     if (!_id) {
         toast.error("Invalid ticket!");
         return;
@@ -97,7 +103,7 @@ export const deleteTicket = async (_id) => {
     }
 }
 
-export const createTicket = async (ticket) => {
+export const createTicket = async (ticket: NewTicketInterface): Promise<boolean | undefined> => {
     if (!ticket.customerName || !ticket.email) {
         toast.error("Customer Name and Email are required!");
         return;

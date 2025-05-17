@@ -1,7 +1,8 @@
 
-import {Modal} from "react-responsive-modal";
-import React from "react";
-import {editTicket} from "../utils";
+import React, {JSX} from 'react';
+import {Modal} from 'react-responsive-modal';
+import {editTicket} from '../utils';
+import TicketInterface from '../interfaces/TicketInterface';
 
 
 function ModalEdit({
@@ -10,8 +11,14 @@ function ModalEdit({
                        modalEditTicket,
                        setModalEditTicket,
                        reloadTickets
-}) {
-    const submitTicketEdit = () => {
+}: {
+    isModalEditOpen: boolean;
+    setIsModalEditOpen: (isOpen: boolean) => void;
+    modalEditTicket: TicketInterface;
+    setModalEditTicket: React.Dispatch<React.SetStateAction<TicketInterface>>;
+    reloadTickets: () => void;
+}): JSX.Element {
+    const submitTicketEdit = (): void => {
         setIsModalEditOpen(false);
         editTicket(modalEditTicket).then(() => {
             reloadTickets();

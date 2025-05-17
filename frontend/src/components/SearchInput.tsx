@@ -1,8 +1,14 @@
 
+import {JSX} from 'react';
+
+
 function SearchInput({
                     searchTerm,
-                    changeSearchTerm,
-                }) {
+                    changeSearchTerm
+}: {
+    searchTerm: string;
+    changeSearchTerm: (term: string) => void;
+}): JSX.Element {
     return (
         <div className="search-wrapper">
             <input type="text"
