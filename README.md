@@ -6,7 +6,11 @@
 
 ### About:
 
-MongoDB + Express.js + React.js + Node.js assessment project.
+For this project used the following technologies:
+- **Frontend**: React, Vite
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Testing**: Jest, Supertest
 
 
 
@@ -56,6 +60,14 @@ npm run dev --prefix frontend
 - Open the application in your browser (default port is in example):
 ```bash
 http://localhost:5173
+```
+
+
+### Testing Instructions:
+
+- Run the backend unit tests:
+```bash
+npm run test:unit --prefix backend/
 ```
 
 
