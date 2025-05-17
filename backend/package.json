@@ -22,7 +22,7 @@
   "scripts": {
     "start": "node api/server.js",
     "dev": "nodemon api/server.js",
-    "seed": "nodemon scripts/seed.js"
+    "seed": "node scripts/seed.js"
   },
   "dependencies": {
     "connect-mongo": "^5.1.0",

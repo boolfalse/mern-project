@@ -34,6 +34,11 @@ cp frontend/.env.example frontend/.env
 cp backend/.env.example backend/.env
 ```
 
+- Optionally, run seeds to have some data in the database.
+```bash
+npm run seed --prefix backend
+```
+
 - Start the backend:
 ```bash
 npm start --prefix backend
