@@ -34,17 +34,21 @@ cp frontend/.env.example frontend/.env
 cp backend/.env.example backend/.env
 ```
 
-- Optionally, run seeds to have some data in the database.
+- For running seeds and the backend with a single command:
+  NOTE: Running seeds will empty the database and insert new data.
 ```bash
-npm run seed --prefix backend
+npm run start db:seed --prefix backend
 ```
 
-- Start the backend:
+- Optionally, run seeds and the backend separately:
 ```bash
+# Run seeds (this will execute seeds and exit)
+npm run seed --prefix backend
+# Run backend
 npm start --prefix backend
 ```
 
-- Start the frontend:
+- Run the frontend:
 ```bash
 npm run dev --prefix frontend
 ```
