@@ -70,6 +70,24 @@ http://localhost:5173
 npm run test:unit --prefix backend/
 ```
 
+The above command will run unit tests for all the required requests.
+
+- Run the backend integration tests (suite):
+```bash
+npm run test:integration --prefix backend/
+```
+
+The above command will go through the following steps and make sure everything is working as expected:
+- Connect to MongoDB and seed tickets before running tests
+- Check if the server is running
+- Check non-existing endpoint
+- Create a ticket
+- Get all tickets and store the last created ticket
+- Update the last created ticket using previously stored ticket ID
+- Get the updated ticket using previously stored ticket ID
+- Delete the last created ticket using previously stored ticket ID
+- Try to get the deleted ticket using previously stored ticket ID
+
 
 ### Author:
 
