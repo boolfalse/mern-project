@@ -1,16 +1,37 @@
 
-## MERN stack assessment
+## MERN-stack project
 
+<img src="https://i.imgur.com/Grkguqf.gif" style="width: 100%;">
 
 
 
 ### About:
 
-For this project used the following technologies:
+A simple ticket management app built with the following technologies:
 - **Frontend**: React, Vite
 - **Backend**: Node.js, Express
 - **Database**: MongoDB
 - **Testing**: Jest, Supertest
+- **Containerization**: Docker
+
+This project was primarily inspired by this [Full-Stack Coding Assessment](https://github.com/Halensuperapp/halentech-coding-challenge).
+
+I used codes from my two previous repositories:
+- [Tasklist app with React.js and Laravel](https://github.com/boolfalse/laravel-react-tasklist)
+- [MongoDB + Express.js + Node.js assessment project](https://github.com/boolfalse/men-assessment/).
+- You can also check out my article on [freeCodeCamp](https://www.freecodecamp.org/news/use-react-with-laravel/)
+
+
+
+### Prerequisites:
+
+For running the project locally, you need to have:
+- Node.js (v20 or higher) installed
+- NPM (v9 or higher) installed
+- MongoDB Atlas database setup or local MongoDB instance
+
+For running the project using Docker, you need to have:
+- Docker installed
 
 
 
@@ -23,7 +44,7 @@ For this project used the following technologies:
 
 - Clone the repository:
 ```bash
-git clone git@github.com:boolfalse/mern-assessment.git && cd mern-assessment
+git clone git@github.com:boolfalse/mern-project.git && cd mern-project
 ```
 
 - Setup Frontend environment variables as in `.env.example`.
@@ -93,7 +114,7 @@ docker compose exec backend sh -c "cd /app/backend && npm run test:integration"
 
 - Clone the repository:
 ```bash
-git clone git@github.com:boolfalse/mern-assessment.git && cd mern-assessment
+git clone git@github.com:boolfalse/mern-project.git && cd mern-project
 ```
 
 - Install backend and frontend dependencies:
@@ -185,3 +206,4 @@ This will go through the following steps and make sure everything is working as 
 
 - [Website](https://boolfalse.com)
 - [LinkedIn](https://www.linkedin.com/in/boolfalse/)
+- [GitHub](https://github.com/boolfalse)
