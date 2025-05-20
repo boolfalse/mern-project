@@ -1,19 +1,20 @@
+# Use Node.js 22
 FROM node:22-alpine
 
-# Create app directory
+# Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json (frontend and backend)
-COPY frontend/package*.json ./frontend/
-COPY backend/package*.json ./backend/
+# Copy backend package.json and package-lock.json
+COPY backend/package*.json ./
 
-# Install dependencies (frontend and backend)
-RUN cd frontend && npm install
-RUN cd backend && npm install
+# Install backend dependencies
+RUN npm install
 
-# Copy source code directories (frontend and backend)
-COPY frontend/ ./frontend/
-COPY backend/ ./backend/
+# Copy backend files
+COPY backend/ ./
 
-# Expose ports for both frontend and backend
-EXPOSE 3000 5173
+# Expose port 3000
+EXPOSE 3000
+
+# Start backend
+CMD ["npm", "start"]

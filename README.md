@@ -79,7 +79,7 @@ docker compose up -d
 - To seed the database:
   <br/>**NOTE**: This requires the dockerized app to be running. If you are using not-detached mode, you can run this command in a new terminal.
 ```bash
-docker compose exec backend sh -c "cd /app/backend && npm run seed"
+docker compose exec backend sh -c "npm run seed"
 ```
 
 - Open the application in your browser (default port is in example):
@@ -97,13 +97,13 @@ docker compose down
 - Run the backend unit tests:
   <br/>**NOTE**: This requires the dockerized app to be running. If you are using not-detached mode, you can run this command in a new terminal.
 ```bash
-docker compose exec backend sh -c "cd /app/backend && npm run test:unit"
+docker compose exec backend sh -c "npm run test:unit"
 ```
 
 - Run the backend integration tests (suite):
   <br/>**NOTE**: This requires the dockerized app to be running. If you are using not-detached mode, you can run this command in a new terminal.
 ```bash
-docker compose exec backend sh -c "cd /app/backend && npm run test:integration"
+docker compose exec backend sh -c "npm run test:integration"
 ```
 
 </details>
@@ -161,6 +161,11 @@ npm run dev --prefix frontend
 http://localhost:5173
 ```
 
+- The backend API should be accessible (default port is in example):
+```bash
+http://localhost:3000/api
+```
+
 #### Testing:
 
 - Run the backend unit tests:
@@ -174,6 +179,7 @@ npm run test:integration --prefix backend/
 ```
 
 </details>
+
 
 
 ### Testing Features:

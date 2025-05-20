@@ -1,50 +1,43 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  mongo:
-    image: mongo:latest
-    container_name: mongo
-    restart: always
-    volumes:
-      - mongo_data:/data/db
-    ports:
-      - "27017:27017"
-    networks:
-      - mern-network
-
   backend:
+    container_name: mern_project_backend
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: backend
-    restart: always
-    depends_on:
-      - mongo
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/mern-project
     ports:
       - "3000:3000"
-    networks:
-      - mern-network
-    command: sh -c "cd /app/backend && npm start"
+    env_file:
+      - backend/.env
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mern_project
+      - DB_SEED=false
+    depends_on:
+      - mongo
+    restart: unless-stopped
 
   frontend:
+    container_name: mern_project_frontend
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: frontend
-    restart: always
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "5173:80"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:3000/api
     depends_on:
       - backend
-    ports:
-      - "5173:5173"
-    networks:
-      - mern-network
-    command: sh -c "cd /app/frontend && npm run dev -- --host 0.0.0.0"
+    restart: unless-stopped
 
-networks:
-  mern-network:
-    driver: bridge
+  mongo:
+    container_name: mern_project_mongo
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
 
 volumes:
-  mongo_data:
+  mongo-data:
