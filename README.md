@@ -8,17 +8,19 @@
 ### About:
 
 A simple ticket management app built with the following technologies:
-- **Frontend**: React, Vite
+- **Frontend**: React.js, Vite
 - **Backend**: Node.js, Express
 - **Database**: MongoDB
 - **Testing**: Jest, Supertest
 - **Containerization**: Docker
 
 This project was primarily inspired by this [Full-Stack Coding Assessment](https://github.com/Halensuperapp/halentech-coding-challenge).
+<br/>
+The source of instructions is copied on `INSTRUCTIONS.md` file.
 
 I used codes from my two previous repositories:
 - [Tasklist app with React.js and Laravel](https://github.com/boolfalse/laravel-react-tasklist)
-- [MongoDB + Express.js + Node.js assessment project](https://github.com/boolfalse/men-assessment/).
+- [MongoDB + Express.js + Node.js assessment project](https://github.com/boolfalse/men-assessment/)
 - You can also check out my article on [freeCodeCamp](https://www.freecodecamp.org/news/use-react-with-laravel/)
 
 
