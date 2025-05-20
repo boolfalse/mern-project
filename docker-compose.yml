@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - mern-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: always
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mern-assessment
+    ports:
+      - "3000:3000"
+    networks:
+      - mern-network
+    command: sh -c "cd /app/backend && npm start"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    networks:
+      - mern-network
+    command: sh -c "cd /app/frontend && npm run dev -- --host 0.0.0.0"
+
+networks:
+  mern-network:
+    driver: bridge
+
+volumes:
+  mongo_data:
