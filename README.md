@@ -49,6 +49,12 @@ For running the project using Docker, you need to have:
 git clone git@github.com:boolfalse/mern-project.git && cd mern-project
 ```
 
+- **NOTE** There is another dockerized version of the app as well on the `docker-configs` branch. If you want to try that instead of this main version (on the `master` branch), then check out the branch and follow `README.md` instructions there. All is pretty the same there, the only differences are database seeding, unit testing and integration testing commands.
+```bash
+# ATTENTION: if you run this command, please follow `README.md` instructions in that branch respectively
+git checkout docker-configs
+```
+
 - Setup Frontend environment variables as in `.env.example`.
   You can leave the default values as they are.
 ```bash
@@ -161,6 +167,11 @@ npm run dev --prefix frontend
 http://localhost:5173
 ```
 
+- The backend API should be accessible (default port is in example):
+```bash
+http://localhost:3000/api
+```
+
 #### Testing:
 
 - Run the backend unit tests:
@@ -174,6 +185,7 @@ npm run test:integration --prefix backend/
 ```
 
 </details>
+
 
 
 ### Testing Features:
